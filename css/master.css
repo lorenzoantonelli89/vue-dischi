@@ -1,0 +1,64 @@
+*{
+ margin: 0;
+ padding: 0;
+}
+
+
+.container{
+ height: 100vh;
+ display: flex;
+ background-color: lightblue;
+}
+
+.row{
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+}
+
+.container-option{
+  height: 10%;
+}
+
+.container-option>select{
+  padding: 10px;
+}
+
+.select-year>input{
+  padding: 20px;
+}
+
+#container-musics{
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card-music{
+  width: 100px;
+  height: 100px;
+}
+
+.card-music img{
+  width: 100%;
+  height: 100%;
+}
+
+.title{
+  font-size: 18px;
+  color: blueviolet;
+}
+
+.author{
+  font-size: 14px;
+  color: green;
+}
+
+.container-info-music{
+  font-size: 13px;
+  color: #fff;
+}
