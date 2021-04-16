@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
-    <title>Esercizi VueJS</title>
+    <title>Esercizi dischi</title>
     <!-- link jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- link vueJs -->
@@ -29,14 +29,14 @@
                 <div class="container-option">
                     <select name="changeGenre" v-model="selectGenre">
                         <option selected value>All</option>
-                        <option :value="option" v-for="option in genre">
+                        <option :value="option" v-for="option in genres">
                             {{option}}
                         </option>
                     </select>
                 </div>
                 <div id="container-musics">
-                    <div class="card-music" v-for="music in filteredMusic">
-                        <img :src="music.poster" alt="">
+                    <div class="card-music" v-for="music in orderedMusic">
+                        <img :src="music.poster" alt="" >
                         <h1 class="title">
                             {{music.title}}
                         </h1>
@@ -44,12 +44,12 @@
                             {{music.author}}
                         </h3>
                         <div class="container-info-music">
-                            <span>
+                            <h4>
                                 {{music.genre}}
-                            </span>
-                            <span>
+                            </h4>
+                            <h4>
                                 {{music.year}}
-                            </span>
+                            </h4>
                         </div>
                     </div>
                 </div>

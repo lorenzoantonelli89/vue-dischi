@@ -3,57 +3,50 @@ function initVue() {
         el: '#app',
         data: {
             'musics': [],
-            'genre': [],
-            'arrYear': [],
             'selectGenre': '',
             'year': '',
         },
-        methods: {
-            filterYear: function () {
-                console.log(this.genre);
-                console.log(this.arrYear);
-            },
-            orderMusic: function (num) {
-                this.musics.sort(function (a, b) {
-                    var A = a[num];
-                    var B = b[num];
-                    if (A < B) {
-                        return -1;
-                    } else if (A > B) {
-                        return 1;
-                    }
-                    return 0;
-                });
-            },
-            test: function () {
-                // this.orderMusic(this.arrYear)
-            },
-        },
+        // prendo oggetto music da api
         mounted() {
             axios
                 .get('https://flynn.boolean.careers/exercises/api/array/music')
                 .then(data => {
                     this.musics = data.data.response;
-                    for (let i = 0; i < this.musics.length; i++) {
-                        let elem = this.musics[i];
-                        if (!this.genre.includes(elem.genre)) {
-                            this.genre.push(elem.genre);
-                        }
-                        if (!this.arrYear.includes(elem.year)) {
-                            this.arrYear.push(elem.year);
-                        }
-                    }
                 });
         },
         computed: {
+            // filtro music e ordino per genere
             filteredMusic: function () {
-                if (this.selectGenre == 'All') {
-                    return this.musics
-                } else {
-                    return this.musics.filter(elem => {
-                        return elem.genre.includes(this.selectGenre);
-                    });
-                }
+                return this.musics.filter(elem => {
+                    return elem.genre.includes(this.selectGenre);
+                });
+            },
+            // ciclo musics per prendere iesimo elemnto con valore genere
+            genres: function () {
+                const genre = [];
+                for (let i = 0; i < this.musics.length; i++) {
+                    let elem = this.musics[i];
+                    if (!genre.includes(elem.genre)) {
+                        genre.push(elem.genre);
+                    }
+                } 
+                return genre;   
+            },
+            // ordino la musica per anno
+            orderedMusic: function () {
+                const order = this.filteredMusic.sort(
+                     function (a, b) {
+                        var A = a.year;
+                        var B = b.year;
+                        if (A < B) {
+                            return -1;
+                        } else if (A > B) {
+                            return 1;
+                        }
+                        return 0;
+                    }
+                );
+                return order;
             }
         }
     });
